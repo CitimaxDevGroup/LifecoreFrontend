@@ -23,12 +23,15 @@ export function SiteHeader() {
         <nav className="hidden md:flex items-center gap-6">
           <Link href="/" className="text-sm font-medium hover:text-primary">
             Home
+
+            
           </Link>
           <Link
-            href="/services"
+            href="/advisory-board"
             className="text-sm font-medium hover:text-primary"
           >
-            Services
+            Advisory Board
+
           </Link>
           <Link
             href="/job-board"

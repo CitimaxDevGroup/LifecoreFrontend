@@ -19,104 +19,124 @@
       SelectValue,
     } from "./ui/select";
     import { Badge } from "./ui/badge";
-    import { Search, MapPin, Briefcase, Clock } from "lucide-react";
+    import { Search, MapPin, BookOpenCheck, CalendarClock } from "lucide-react";
     import {
       Dialog,
       DialogContent,
       DialogHeader,
       DialogTitle,
-      DialogTrigger,
     } from "./ui/dialog";
-    import JobDetails from "./JobDetails";
 
-    interface JobType {
+    interface AdvisoryType {
       id: string;
       title: string;
-      company: string;
+      provider: string;
       location: string;
       type: string;
       category: string;
       postedDate: string;
       description: string;
+      benefits: string[];
       requirements: string[];
-      responsibilities: string[];
-      salary: string;
+      price: string;
     }
 
-    interface JobBoardProps {
-      jobs?: JobType[];
-    }
+    const AdvisoryDetails = ({ advisory }: { advisory: AdvisoryType }) => (
+      <div className="space-y-4">
+        <DialogHeader>
+          <DialogTitle>{advisory.title}</DialogTitle>
+          <p className="text-muted-foreground">{advisory.provider}</p>
+        </DialogHeader>
+        <div className="text-sm text-muted-foreground">
+          <div className="mb-2"><strong>Location:</strong> {advisory.location}</div>
+          <div className="mb-2"><strong>Type:</strong> {advisory.type}</div>
+          <div className="mb-2"><strong>Category:</strong> {advisory.category}</div>
+          <div className="mb-2"><strong>Posted:</strong> {new Date(advisory.postedDate).toLocaleDateString()}</div>
+        </div>
+        <p>{advisory.description}</p>
+        <div>
+          <h4 className="font-medium mt-4">Benefits:</h4>
+          <ul className="list-disc pl-5">
+            {advisory.benefits.map((item, idx) => (
+              <li key={idx}>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h4 className="font-medium mt-4">Requirements:</h4>
+          <ul className="list-disc pl-5">
+            {advisory.requirements.map((item, idx) => (
+              <li key={idx}>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="font-semibold">Price: {advisory.price}</div>
+      </div>
+    );
 
-    const JobBoard = ({ jobs = [] }: JobBoardProps) => {
+    const AdvisoryBoard = () => {
       const [searchTerm, setSearchTerm] = useState("");
       const [selectedCategory, setSelectedCategory] = useState("all");
       const [selectedType, setSelectedType] = useState("all");
       const [selectedLocation, setSelectedLocation] = useState("all");
-      const [selectedJob, setSelectedJob] = useState<JobType | null>(null);
+      const [selectedAdvisory, setSelectedAdvisory] = useState<AdvisoryType | null>(null);
       const [open, setOpen] = useState(false);
 
-      const defaultJobs: JobType[] = [
+      const defaultAdvisories: AdvisoryType[] = [
         {
           id: "1",
-          title: "Medical Laboratory Technician",
-          company: "LifeCore Biointegrative Inc.",
+          title: "Regulatory Compliance Consultation",
+          provider: "LifeCore Biointegrative Inc.",
           location: "San Francisco, CA",
-          type: "Full-time",
-          category: "Laboratory",
-          postedDate: "2023-05-15",
-          description:
-            "We are seeking a skilled Medical Laboratory Technician to join our team...",
-          requirements: [
-            "Bachelor's degree",
-            "2+ years experience",
-            "LIS knowledge",
-            "Strong analytical skills",
+          type: "Consultation",
+          category: "Regulatory",
+          postedDate: "2023-06-01",
+          description: "Expert advisory on FDA and ISO compliance for medical laboratories and manufacturers.",
+          benefits: [
+            "Understand key compliance requirements",
+            "Gap analysis of your current practices",
+            "Detailed action plan to meet standards",
           ],
-          responsibilities: [
-            "Perform lab tests and procedures",
-            "Maintain equipment and supplies",
-            "Ensure safety and compliance standards",
-          ],
-          salary: "$60,000 - $75,000/year",
+          requirements: ["Pre-meeting intake form", "Company documentation"],
+          price: "$1,200 per session",
         },
+        // Add more services here...
       ];
 
-      const displayJobs = jobs.length > 0 ? jobs : defaultJobs;
-
-      const filteredJobs = displayJobs.filter((job) => {
+      const filteredAdvisories = defaultAdvisories.filter((service) => {
         const matchesSearch =
-          job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          job.description.toLowerCase().includes(searchTerm.toLowerCase());
+          service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          service.description.toLowerCase().includes(searchTerm.toLowerCase());
         const matchesCategory =
-          selectedCategory === "all" || job.category === selectedCategory;
-        const matchesType = selectedType === "all" || job.type === selectedType;
+          selectedCategory === "all" || service.category === selectedCategory;
+        const matchesType = selectedType === "all" || service.type === selectedType;
         const matchesLocation =
           selectedLocation === "all" ||
-          job.location.toLowerCase().includes(selectedLocation.toLowerCase());
+          service.location.toLowerCase().includes(selectedLocation.toLowerCase());
         return matchesSearch && matchesCategory && matchesType && matchesLocation;
       });
 
       const categories = [
         "all",
-        ...Array.from(new Set(displayJobs.map((job) => job.category))),
+        ...Array.from(new Set(defaultAdvisories.map((s) => s.category))),
       ];
       const types = [
         "all",
-        ...Array.from(new Set(displayJobs.map((job) => job.type))),
+        ...Array.from(new Set(defaultAdvisories.map((s) => s.type))),
       ];
       const locations = [
         "all",
         ...Array.from(
-          new Set(displayJobs.map((job) => job.location.split(",")[0].trim()))
+          new Set(defaultAdvisories.map((s) => s.location.split(",")[0].trim()))
         ),
       ];
 
       return (
         <div className="bg-background w-full p-6 rounded-lg">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold mb-2">Job Board</h1>
+            <h1 className="text-3xl font-bold mb-2">Advisory Services</h1>
             <p className="text-muted-foreground">
-              Find your next career opportunity at LifeCore Biointegrative Inc.
+              Browse expert consulting services from LifeCore Biointegrative Inc.
             </p>
           </div>
 
@@ -125,7 +145,7 @@
             <div className="relative">
               <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input
-                placeholder="Search jobs..."
+                placeholder="Search services..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10"
@@ -147,7 +167,7 @@
 
             <Select value={selectedType} onValueChange={setSelectedType}>
               <SelectTrigger>
-                <SelectValue placeholder="Job Type" />
+                <SelectValue placeholder="Type" />
               </SelectTrigger>
               <SelectContent>
                 {types.map((t) => (
@@ -172,26 +192,26 @@
             </Select>
           </div>
 
-          {/* Job Listings */}
+          {/* Advisory Listings */}
           <div className="space-y-4">
-            {filteredJobs.length > 0 ? (
-              filteredJobs.map((job) => (
+            {filteredAdvisories.length > 0 ? (
+              filteredAdvisories.map((service) => (
                 <Card
-                  key={job.id}
+                  key={service.id}
                   className="hover:border-primary transition-colors"
                 >
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <div>
-                        <CardTitle>{job.title}</CardTitle>
+                        <CardTitle>{service.title}</CardTitle>
                         <CardDescription className="mt-1">
-                          {job.company}
+                          {service.provider}
                         </CardDescription>
                       </div>
                       <Badge
-                        variant={job.type === "Full-time" ? "default" : "secondary"}
+                        variant={service.type === "Consultation" ? "default" : "secondary"}
                       >
-                        {job.type}
+                        {service.type}
                       </Badge>
                     </div>
                   </CardHeader>
@@ -199,24 +219,24 @@
                     <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                       <div className="flex items-center">
                         <MapPin className="mr-1 h-4 w-4" />
-                        {job.location}
+                        {service.location}
                       </div>
                       <div className="flex items-center">
-                        <Briefcase className="mr-1 h-4 w-4" />
-                        {job.category}
+                        <BookOpenCheck className="mr-1 h-4 w-4" />
+                        {service.category}
                       </div>
                       <div className="flex items-center">
-                        <Clock className="mr-1 h-4 w-4" />
-                        Posted {new Date(job.postedDate).toLocaleDateString()}
+                        <CalendarClock className="mr-1 h-4 w-4" />
+                        Posted {new Date(service.postedDate).toLocaleDateString()}
                       </div>
                     </div>
-                    <p className="mt-4 line-clamp-2 text-sm">{job.description}</p>
+                    <p className="mt-4 line-clamp-2 text-sm">{service.description}</p>
                   </CardContent>
                   <CardFooter>
                     <Button
                       variant="outline"
                       onClick={() => {
-                        setSelectedJob(job);
+                        setSelectedAdvisory(service);
                         setOpen(true);
                       }}
                     >
@@ -227,7 +247,7 @@
               ))
             ) : (
               <div className="text-center py-12">
-                <h3 className="text-lg font-medium">No jobs found</h3>
+                <h3 className="text-lg font-medium">No services found</h3>
                 <p className="text-muted-foreground mt-2">
                   Try adjusting your search or filters
                 </p>
@@ -235,16 +255,15 @@
             )}
           </div>
 
-          {/* Job Details Dialog */}
+          {/* Advisory Details Dialog */}
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
-              {selectedJob && <JobDetails job={selectedJob} />}
+              {selectedAdvisory && <AdvisoryDetails advisory={selectedAdvisory} />}
             </DialogContent>
           </Dialog>
         </div>
       );
     };
 
-    export default JobBoard;
-// This code defines a JobBoard component that displays job listings with filters and a dialog for job details.
-// It includes search functionality, category, type, and location filters, and uses various UI components for layout and styling.
+    export default AdvisoryBoard;
+// This code defines an AdvisoryBoard component that displays a list of advisory services with filtering options and a detailed view for each service. It uses various UI components for layout and interaction, including cards, dialogs, and select inputs.
