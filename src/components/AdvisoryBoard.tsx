@@ -8,9 +8,9 @@
       CardFooter,
       CardHeader,
       CardTitle,
-    } from "./ui/card";
-    import { Input } from "./ui/input";
-    import { Button } from "./ui/button";
+    } from "@/components/ui/card";
+    import { Input } from "@/components/ui/input";
+    import { Button } from "@/components/ui/button";
     import {
       Select,
       SelectContent,
@@ -18,14 +18,14 @@
       SelectTrigger,
       SelectValue,
     } from "./ui/select";
-    import { Badge } from "./ui/badge";
+    import { Badge } from "@/components/ui/badge";
     import { Search, MapPin, BookOpenCheck, CalendarClock } from "lucide-react";
     import {
       Dialog,
       DialogContent,
       DialogHeader,
       DialogTitle,
-    } from "./ui/dialog";
+    } from "@/components/ui/dialog";
 
     interface AdvisoryType {
       id: string;

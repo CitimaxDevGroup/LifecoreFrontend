@@ -27,7 +27,7 @@ export function SiteHeader() {
             
           </Link>
           <Link
-            href="/advisory-board"
+            href="/Advisory-Board"
             className="text-sm font-medium hover:text-primary"
           >
             Advisory Board
@@ -49,8 +49,9 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-4">
           {/* Contact Us button as a phone link */}
-          <Link href="+63 977-817-0723" passHref>
-            <Button variant="outline" size="sm" className="hidden md:flex">
+          <Link href={"/Contactus"}>
+            <Button size="sm">
+              <span className="sr-only">Contact Us</span>
               <Phone className="mr-2 h-4 w-4" /> Contact Us
             </Button>
           </Link>

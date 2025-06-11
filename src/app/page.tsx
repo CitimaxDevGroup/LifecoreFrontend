@@ -173,110 +173,68 @@ export default function Home() {
   </div>
 </section>
 
-        {/* Job Board Preview */}
-        <section className="w-full py-12 md:py-24 bg-muted">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-              <div>
-                <h2 className="text-3xl font-bold tracking-tighter">
-                  Career Opportunities
-                </h2>
-                <p className="text-muted-foreground md:text-lg mt-2">
-                  Join our team of healthcare professionals
-                </p>
-              </div>
-              <Link href="/job-board">
-                <Button variant="outline">
-                  View All Positions <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[{
-                title: "Laboratory Technician",
-                location: "Boston, MA",
-                type: "Full-time",
-                description:
-                  "Perform laboratory tests and procedures for diagnostic and research purposes.",
-              },
-              {
-                title: "Healthcare Administrator",
-                location: "Boston, MA",
-                type: "Full-time",
-                description:
-                  "Oversee daily operations and ensure efficient delivery of healthcare services.",
-              }].map((job, index) => (
-                <Card key={index} className="transition-all hover:shadow-md">
-                  <CardHeader>
-                    <CardTitle className="text-xl">{job.title}</CardTitle>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      <div className="flex items-center text-sm text-muted-foreground">
-                        <MapPin className="mr-1 h-4 w-4" /> {job.location}
-                      </div>
-                      <div className="flex items-center text-sm text-muted-foreground">
-                        <Clock className="mr-1 h-4 w-4" /> {job.type}
-                      </div>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">{job.description}</p>
-                  </CardContent>
-                  <CardFooter>
-                    <Link href={`/job-board/${index}`}>
-                      <Button variant="secondary" size="sm">
-                        View Details
-                      </Button>
-                    </Link>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-        {/* Advisory Board Preview */}
+{/* Job Board Preview */}
 <section className="w-full py-12 md:py-24 bg-muted">
   <div className="container px-4 md:px-6">
     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
       <div>
-        <h2 className="text-3xl font-bold tracking-tighter">
-          Advisory Board
+        <h2 className="text-3xl font-bold tracking-tight">
+          Career Opportunities
         </h2>
         <p className="text-muted-foreground md:text-lg mt-2">
-          Meet the experts guiding our mission and vision
+          Join our team of healthcare professionals
         </p>
       </div>
-      <Link href="/advisory-board">
+      <Link href="/job-board" aria-label="View all open positions">
         <Button variant="outline">
-          View All Members <ArrowRight className="ml-2 h-4 w-4" />
+          View All Positions <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </Link>
     </div>
+
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {[{
-        name: "Dr. Maria Gonzalez",
-        title: "Chief Medical Advisor",
-        affiliation: "Harvard Medical School",
-        bio: "Dr. Gonzalez provides strategic insight on clinical innovation and patient care.",
-      },
-      {
-        name: "James Turner",
-        title: "Health Policy Expert",
-        affiliation: "World Health Organization",
-        bio: "James brings global health policy expertise to shape our strategic direction.",
-      }].map((member, index) => (
-        <Card key={index} className="transition-all hover:shadow-md">
+      {[
+        {
+          title: "Laboratory Technician",
+          location: "Boston, MA",
+          type: "Full-time",
+          description:
+            "Perform laboratory tests and procedures for diagnostic and research purposes.",
+        },
+        {
+          title: "Healthcare Administrator",
+          location: "Boston, MA",
+          type: "Full-time",
+          description:
+            "Oversee daily operations and ensure efficient delivery of healthcare services.",
+        },
+      ].map((job, index) => (
+        <Card
+          key={job.title || index}
+          className="transition-all duration-200 hover:shadow-md"
+        >
           <CardHeader>
-            <CardTitle className="text-xl">{member.name}</CardTitle>
-            <div className="mt-1 text-sm text-muted-foreground">{member.title}</div>
-            <div className="mt-1 text-sm text-muted-foreground italic">{member.affiliation}</div>
+            <CardTitle className="text-xl font-semibold">{job.title}</CardTitle>
+            <div className="flex flex-wrap gap-3 mt-2 text-sm text-muted-foreground">
+              <div className="flex items-center">
+                <MapPin className="mr-1 h-4 w-4" />
+                {job.location}
+              </div>
+              <div className="flex items-center">
+                <Clock className="mr-1 h-4 w-4" />
+                {job.type}
+              </div>
+            </div>
           </CardHeader>
+
           <CardContent>
-            <p className="text-muted-foreground">{member.bio}</p>
+            <p className="text-muted-foreground">{job.description}</p>
           </CardContent>
+
           <CardFooter>
-            <Link href={`/advisory-board/${index}`}>
+            <Link href="/job-board" aria-label={`Go to job board from ${job.title}`}>
               <Button variant="secondary" size="sm">
-                View Profile
+                View Details
               </Button>
             </Link>
           </CardFooter>
@@ -285,7 +243,6 @@ export default function Home() {
     </div>
   </div>
 </section>
-
 
         {/* Appointment Booking Preview */}
         <section className="w-full py-12 md:py-24 bg-background">
@@ -376,7 +333,7 @@ export default function Home() {
               <h3 className="font-semibold mb-4">Quick Links</h3>
               <div className="grid gap-2">
                 <Link href="/" className="text-sm text-muted-foreground hover:text-foreground">Home</Link>
-                <Link href="/advisory-board" className="text-sm text-muted-foreground hover:text-foreground">Advisory Board</Link>
+                <Link href="/Advisory-Board" className="text-sm text-muted-foreground hover:text-foreground">Advisory Board</Link>
                 <Link href="/job-board" className="text-sm text-muted-foreground hover:text-foreground">Job Board</Link>
                 <Link href="/appointments" className="text-sm text-muted-foreground hover:text-foreground">Appointments</Link>
               </div>
