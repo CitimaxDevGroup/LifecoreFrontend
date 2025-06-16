@@ -24,9 +24,9 @@ export function UserAccountNav() {
             Sign In
           </Button>
         </Link>
-        <Link href="/signup">
+        {/* <Link href="/signup">
           <Button size="sm">Sign Up</Button>
-        </Link>
+        </Link> */}
       </div>
     );
   }

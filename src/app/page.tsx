@@ -54,9 +54,7 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <SiteHeader />
-
       <main className="flex-1">
-        {/* Hero Section */}
         <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-background to-muted">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
@@ -71,9 +69,9 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Link href="/appointments">
-                    <Button size="lg" className="w-full min-[400px]:w-auto">
-                      Book an Appointment{" "}
+                  <Link href="/">
+                    <Button size="lg" className="w-full min-[400px]:w-auto bg-[#279445] hover:bg-[#14722f]">
+                      Learn More!{" "}
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
@@ -103,148 +101,145 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Services Overview */}
-<section className="w-full py-12 md:py-24 bg-background">
-  <div className="container px-4 md:px-6">
-    <div className="flex flex-col items-center justify-center space-y-4 text-center">
-      <div className="space-y-2">
-        <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-          Our Services
-        </h2>
-        <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-          Comprehensive laboratory and healthcare services tailored to your needs
-        </p>
-      </div>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-      {[
-        {
-          title: "Laboratory Testing",
-          description:
-            "Comprehensive blood work, genetic testing, and specialized diagnostic services.",
-          imageSrc: "/lifecore4.jpg",
-          imageAlt: "Laboratory icon",
-        },
-        {
-          title: "Preventive Health Screenings",
-          description:
-            "Early detection screenings and health risk assessments for proactive healthcare.",
-          imageSrc: "/lifecore6.jpg",
-          imageAlt: "Health screening icon",
-        },
-        {
-          title: "Specialized Consultations",
-          description:
-            "Expert consultations with healthcare specialists in various medical fields.",
-          imageSrc: "/lifecore3.jpg",
-          imageAlt: "Consultation icon",
-        },
-      ].map((service, index) => (
-        <Card key={index} className="transition-all hover:shadow-lg">
-          <CardHeader>
-            <div className="mb-4">
-              <Image
-                src={service.imageSrc}
-                width={200}
-                height={100}
-                alt={service.imageAlt}
-                className="rounded-md"
-              />
-            </div>
-            <CardTitle>{service.title}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <CardDescription className="text-base">
-              {service.description}
-            </CardDescription>
-          </CardContent>
-          <CardFooter>
-            <Link
-              href="/appointments"
-              className="group flex items-center text-sm font-medium text-primary"
-            >
-              Book now{" "}
-              <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </CardFooter>
-        </Card>
-      ))}
-    </div>
-  </div>
-</section>
-
-{/* Job Board Preview */}
-<section className="w-full py-12 md:py-24 bg-muted">
-  <div className="container px-4 md:px-6">
-    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight">
-          Career Opportunities
-        </h2>
-        <p className="text-muted-foreground md:text-lg mt-2">
-          Join our team of healthcare professionals
-        </p>
-      </div>
-      <Link href="/job-board" aria-label="View all open positions">
-        <Button variant="outline">
-          View All Positions <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
-      </Link>
-    </div>
-
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {[
-        {
-          title: "Laboratory Technician",
-          location: "Boston, MA",
-          type: "Full-time",
-          description:
-            "Perform laboratory tests and procedures for diagnostic and research purposes.",
-        },
-        {
-          title: "Healthcare Administrator",
-          location: "Boston, MA",
-          type: "Full-time",
-          description:
-            "Oversee daily operations and ensure efficient delivery of healthcare services.",
-        },
-      ].map((job, index) => (
-        <Card
-          key={job.title || index}
-          className="transition-all duration-200 hover:shadow-md"
-        >
-          <CardHeader>
-            <CardTitle className="text-xl font-semibold">{job.title}</CardTitle>
-            <div className="flex flex-wrap gap-3 mt-2 text-sm text-muted-foreground">
-              <div className="flex items-center">
-                <MapPin className="mr-1 h-4 w-4" />
-                {job.location}
-              </div>
-              <div className="flex items-center">
-                <Clock className="mr-1 h-4 w-4" />
-                {job.type}
+        <section className="w-full py-12 md:py-24 bg-background">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                  Our Services
+                </h2>
+                <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  Comprehensive laboratory and healthcare services tailored to your needs
+                </p>
               </div>
             </div>
-          </CardHeader>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+              {[
+                {
+                  title: "Laboratory Testing",
+                  description:
+                    "Comprehensive blood work, genetic testing, and specialized diagnostic services.",
+                  imageSrc: "/lifecore4.jpg",
+                  imageAlt: "Laboratory icon",
+                },
+                {
+                  title: "Preventive Health Screenings",
+                  description:
+                    "Early detection screenings and health risk assessments for proactive healthcare.",
+                  imageSrc: "/lifecore6.jpg",
+                  imageAlt: "Health screening icon",
+                },
+                {
+                  title: "Specialized Consultations",
+                  description:
+                    "Expert consultations with healthcare specialists in various medical fields.",
+                  imageSrc: "/lifecore3.jpg",
+                  imageAlt: "Consultation icon",
+                },
+              ].map((service, index) => (
+                <Card key={index} className="transition-all hover:shadow-lg">
+                  <CardHeader>
+                    <div className="mb-4">
+                      <Image
+                        src={service.imageSrc}
+                        width={200}
+                        height={100}
+                        alt={service.imageAlt}
+                        className="rounded-md"
+                      />
+                    </div>
+                    <CardTitle>{service.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-base">
+                      {service.description}
+                    </CardDescription>
+                  </CardContent>
+                  <CardFooter>
+                    <Link
+                      href="/appointments"
+                      className="group flex items-center text-sm font-medium text-primary"
+                    >
+                      Book now{" "}
+                      <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
 
-          <CardContent>
-            <p className="text-muted-foreground">{job.description}</p>
-          </CardContent>
+        <section className="w-full py-12 md:py-24 bg-muted">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+              <div>
+                <h2 className="text-3xl font-bold tracking-tight">
+                  Career Opportunities
+                </h2>
+                <p className="text-muted-foreground md:text-lg mt-2">
+                  Join our team of healthcare professionals
+                </p>
+              </div>
+              <Link href="/job-board" aria-label="View all open positions">
+                <Button variant="outline">
+                  View All Positions <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
 
-          <CardFooter>
-            <Link href="/job-board" aria-label={`Go to job board from ${job.title}`}>
-              <Button variant="secondary" size="sm">
-                View Details
-              </Button>
-            </Link>
-          </CardFooter>
-        </Card>
-      ))}
-    </div>
-  </div>
-</section>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                {
+                  title: "Laboratory Technician",
+                  location: "Boston, MA",
+                  type: "Full-time",
+                  description:
+                    "Perform laboratory tests and procedures for diagnostic and research purposes.",
+                },
+                {
+                  title: "Healthcare Administrator",
+                  location: "Boston, MA",
+                  type: "Full-time",
+                  description:
+                    "Oversee daily operations and ensure efficient delivery of healthcare services.",
+                },
+              ].map((job, index) => (
+                <Card
+                  key={job.title || index}
+                  className="transition-all duration-200 hover:shadow-md"
+                >
+                  <CardHeader>
+                    <CardTitle className="text-xl font-semibold">{job.title}</CardTitle>
+                    <div className="flex flex-wrap gap-3 mt-2 text-sm text-muted-foreground">
+                      <div className="flex items-center">
+                        <MapPin className="mr-1 h-4 w-4" />
+                        {job.location}
+                      </div>
+                      <div className="flex items-center">
+                        <Clock className="mr-1 h-4 w-4" />
+                        {job.type}
+                      </div>
+                    </div>
+                  </CardHeader>
 
-        {/* Appointment Booking Preview */}
+                  <CardContent>
+                    <p className="text-muted-foreground">{job.description}</p>
+                  </CardContent>
+
+                  <CardFooter>
+                    <Link href="/job-board" aria-label={`Go to job board from ${job.title}`}>
+                      <Button variant="secondary" size="sm">
+                        View Details
+                      </Button>
+                    </Link>
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="w-full py-12 md:py-24 bg-background">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
@@ -310,51 +305,47 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Footer */}
       <footer className="w-full border-t bg-background py-6 md:py-8">
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Image
-                  src="/lifecore.jpg"
+                  src="/lifecore-nbg.png"
                   alt="LifeCore Biointegrative Inc."
                   width={250}
                   height={250}
                   className="rounded-md"
                 />
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-muted-foreground ml-5">
                 Advanced healthcare solutions combining laboratory services with
                 holistic approaches.
               </p>
             </div>
             <div>
-              <h3 className="font-semibold mb-4">Quick Links</h3>
+              <h3 className="font-semibold text-[#279445] mb-2">Quick Links</h3>
               <div className="grid gap-2">
-                <Link href="/" className="text-sm text-muted-foreground hover:text-foreground">Home</Link>
-                <Link href="/Advisory-Board" className="text-sm text-muted-foreground hover:text-foreground">Advisory Board</Link>
-                <Link href="/job-board" className="text-sm text-muted-foreground hover:text-foreground">Job Board</Link>
-                <Link href="/appointments" className="text-sm text-muted-foreground hover:text-foreground">Appointments</Link>
+                <Link href="/" className="text-sm text-muted-foreground hover:text-[#4fb74c]">Home</Link>
+                <Link href="/advisory-board" className="text-sm text-muted-foreground hover:text-[#4fb74c]">Advisory Board</Link>
+                <Link href="/job-board" className="text-sm text-muted-foreground hover:text-[#4fb74c]">Job Board</Link>
+                <Link href="/privacy" className="text-sm text-muted-foreground hover:text-[#4fb74c]">Privacy Policy</Link>
               </div>
             </div>
             <div>
-              <h3 className="font-semibold mb-4">Contact</h3>
+              <h3 className="font-semibold text-[#279445] mb-2">Contact</h3>
               <div className="grid gap-2">
-                <p className="text-sm text-muted-foreground">7/F ORE Central, 9th St. cor. 31st Ave., BGC, Taguig.</p>
+                <p className="text-sm text-muted-foreground">7/F ORE Central, 9th St. cor. 31st Ave., BGC, Taguig</p>
                 <p className="text-sm text-muted-foreground">+63 977-817-0723</p>
                 <p className="text-sm text-muted-foreground">info.lifecoreph@gmail.com</p>
               </div>
             </div>
           </div>
-          <div className="mt-8 border-t pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="mt-8 border-t pt-6 flex flex-col items-center justify-center text-center">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} LifeCore Biointegrative Inc. All rights reserved.
+              © {new Date().getFullYear()}{' '}
+              <span className="text-[#279445] font-bold">LifeCore Bio-Integrative Inc.</span> All rights reserved.
             </p>
-            <div className="flex items-center gap-4">
-              <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground">Privacy Policy</Link>
-              <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground">Terms of Service</Link>
-            </div>
           </div>
         </div>
       </footer>
