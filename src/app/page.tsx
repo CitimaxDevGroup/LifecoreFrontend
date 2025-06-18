@@ -103,67 +103,66 @@ export default function Home() {
     },
   ];
 
-  // Add this array for company logos
   const companyLogos = [
-    { name: "Company A", image: "/company-a.png" },
-    { name: "Company B", image: "/company-b.png" },
-    { name: "Company C", image: "/company-c.png" },
-    { name: "Company D", image: "/company-d.png" },
-    { name: "Company E", image: "/company-e.png" },
-    { name: "Company F", image: "/company-f.png" },
-    { name: "Company G", image: "/company-G.png" },
-    { name: "Company H", image: "/company-h.png" },
-    { name: "Company I", image: "/company-i.png" },
-    { name: "Company J", image: "/company-j.png" },
-    { name: "Company K", image: "/company-k.png" },
-    { name: "Company L", image: "/company-l.png" },
-    { name: "Company M", image: "/company-m.png" },
-    { name: "Company N", image: "/company-n.png" },
-    { name: "Company O", image: "/company-o.png" },
-    { name: "Company P", image: "/company-p.png" },
-    { name: "Company Q", image: "/company-q.png" },
-    { name: "Company R", image: "/company-r.png" },
-    { name: "Company S", image: "/company-s.png" },
+    { name: "Company A", image: "/companies/company-a.png" },
+    { name: "Company B", image: "/companies/company-b.png" },
+    { name: "Company C", image: "/companies/company-c.png" },
+    { name: "Company D", image: "/companies/company-d.png" },
+    { name: "Company E", image: "/companies/company-e.png" },
+    { name: "Company F", image: "/companies/company-f.png" },
+    { name: "Company G", image: "/companies/company-G.png" },
+    { name: "Company H", image: "/companies/company-h.png" },
+    { name: "Company I", image: "/companies/company-i.png" },
+    { name: "Company J", image: "/companies/company-j.png" },
+    { name: "Company K", image: "/companies/company-k.png" },
+    { name: "Company L", image: "/companies/company-l.png" },
+    { name: "Company M", image: "/companies/company-m.png" },
+    { name: "Company N", image: "/companies/company-n.png" },
+    { name: "Company O", image: "/companies/company-o.png" },
+    { name: "Company P", image: "/companies/company-p.png" },
+    { name: "Company Q", image: "/companies/company-q.png" },
+    { name: "Company R", image: "/companies/company-r.png" },
+    { name: "Company S", image: "/companies/company-s.png" },
   ];
 
   function paginationColors() {
-  setTimeout(() => {
-    const paginations = document.querySelectorAll(".swiper-pagination");
+    setTimeout(() => {
+      const paginations = document.querySelectorAll(".swiper-pagination");
 
-    paginations.forEach((pagination) => {
-      const bullets = pagination.querySelectorAll(".swiper-pagination-bullet");
+      paginations.forEach((pagination) => {
+        const bullets = pagination.querySelectorAll(".swiper-pagination-bullet");
 
-      bullets.forEach((bullet) => {
-        (bullet as HTMLElement).style.backgroundColor = "#279445";
-        (bullet as HTMLElement).style.opacity = "0.4";
-      });
-
-      const observer = new MutationObserver(() => {
         bullets.forEach((bullet) => {
-          if (bullet.classList.contains("swiper-pagination-bullet-active")) {
-            (bullet as HTMLElement).style.backgroundColor = "#246321";
-            (bullet as HTMLElement).style.opacity = "1";
-          } else {
-            (bullet as HTMLElement).style.backgroundColor = "#4fb74c";
-            (bullet as HTMLElement).style.opacity = "0.4";
-          }
+          (bullet as HTMLElement).style.backgroundColor = "#279445";
+          (bullet as HTMLElement).style.opacity = "0.4";
+        });
+
+        const observer = new MutationObserver(() => {
+          bullets.forEach((bullet) => {
+            if (bullet.classList.contains("swiper-pagination-bullet-active")) {
+              (bullet as HTMLElement).style.backgroundColor = "#246321";
+              (bullet as HTMLElement).style.opacity = "1";
+            } else {
+              (bullet as HTMLElement).style.backgroundColor = "#4fb74c";
+              (bullet as HTMLElement).style.opacity = "0.4";
+            }
+          });
+        });
+
+        observer.observe(pagination, {
+          attributes: true,
+          childList: true,
+          subtree: true,
         });
       });
-
-      observer.observe(pagination, {
-        attributes: true,
-        childList: true,
-        subtree: true,
-      });
-    });
-  }, 0);
-}
+    }, 0);
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <SiteHeader />
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-background to-muted">
+        <section className="w-full py-6 md:py-12 lg:py-16 bg-gradient-to-b from-background to-muted">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
               <div className="flex flex-col justify-center space-y-4">
@@ -328,13 +327,14 @@ export default function Home() {
             </Swiper>
           </div>
         </section>
+
         {/* <section className="relative overflow-hidden py-10 md:py-14 xl:py-16"> */}
-      {/* Decorative shapes */}
-      {/* <div className="shape absolute z-[1] w-24 h-24 rounded-full bg-[#4fb74c] right-0 bottom-10 translate-x-1/2" />
+        {/* Decorative shapes */}
+        {/* <div className="shape absolute z-[1] w-24 h-24 rounded-full bg-[#4fb74c] right-0 bottom-10 translate-x-1/2" />
       <div className="shape absolute z-[1] w-24 h-24 rounded-full bg-[#4fb74c] opacity-50 top-2 left-0 -translate-x-1/2" /> */}
 
-      {/* Heading */}
-      {/* <div className="text-center max-w-3xl mx-auto mb-12 px-4">
+        {/* Heading */}
+        {/* <div className="text-center max-w-3xl mx-auto mb-12 px-4">
         <h1 className="text-xl md:text-2xl lg:text-4xl mb-2 font-bold text-[#279445] leading-snug">
           Trusted by Companies
         </h1>
@@ -345,8 +345,8 @@ export default function Home() {
         </p>
       </div> */}
 
-      {/* Carousel */}
-      {/* <div className="px-4 relative z-10 mt-20">
+        {/* Carousel */}
+        {/* <div className="px-4 relative z-10 mt-20">
         <Swiper
           modules={[Autoplay, Pagination, Navigation]}
           slidesPerView={2}
@@ -380,109 +380,101 @@ export default function Home() {
           ))}
         </Swiper>
       </div> */}
-    {/* </section> */}
+        {/* </section> */}
 
-          <section className="relative overflow-hidden py-10 md:py-14 xl:py-16 bg-white">
-  {/* Decorative shapes */}
-  <div className="shape absolute z-[1] w-24 h-24 rounded-full bg-[#4fb74c] right-0 bottom-10 translate-x-1/2" />
-  <div className="shape absolute z-[1] w-24 h-24 rounded-full bg-[#4fb74c] opacity-50 top-2 left-0 -translate-x-1/2" />
+        <section className="relative overflow-hidden py-10 md:py-14 xl:py-16 bg-white">
 
-  {/* Heading */}
-  <div className="text-center max-w-3xl mx-auto mb-12 px-4 relative z-10">
-    <h1 className="text-xl md:text-2xl lg:text-4xl mb-2 font-bold text-[#279445] leading-snug">
-      Trusted by Many Companies
-    </h1>
-    <p>
-      Explore the partners and clients who trust{' '}
-      <span className="text-[#279445]">LifeCore Bio-Integrative Inc.</span> in
-      health, science, and innovation.
-    </p>
-  </div>
+          <div className="shape absolute z-[1] w-24 h-24 rounded-full bg-[#4fb74c] right-0 bottom-10 translate-x-1/2" />
+          <div className="shape absolute z-[1] w-24 h-24 rounded-full bg-[#4fb74c] opacity-50 top-2 left-0 -translate-x-1/2" />
 
-  {/* Logo Collage */}
-  <div className="relative z-10 px-4 flex flex-col items-center gap-1">
-    {/* Row 1 */}
-    <div className="flex gap-1">
-      <img src="/company-a.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-b.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-c.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-d.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-e.png" className="w-28 h-36 object-contain bg-white" />
-      <img src="/company-f.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-g.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-h.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-i.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-j.png" className="w-20 h-20 object-contain bg-white" />
-    </div>
+          <div className="text-center max-w-3xl mx-auto mb-12 px-4 relative z-10">
+            <h1 className="text-xl md:text-2xl lg:text-4xl mb-2 font-bold text-[#279445] leading-snug">
+              Trusted by Many Companies
+            </h1>
+            <p>
+              Explore the partners and clients who trust{' '}
+              <span className="text-[#279445]">LifeCore Bio-Integrative Inc.</span> in
+              health, science, and innovation.
+            </p>
+          </div>
 
-    {/* Row 2 */}
-    <div className="flex gap-1">
-      <img src="/company-k.png" className="w-24 h-20 object-contain bg-white" />
-      <img src="/company-l.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-m.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-n.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-o.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-p.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-q.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-r.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-s.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-t.png" className="w-24 h-24 object-contain bg-white" />
-    </div>
+          <div className="relative z-10 px-4 flex flex-col items-center gap-1">
+            <div className="flex gap-1">
+              <img src="/companies/company-a.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-b.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-c.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-d.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-e.png" className="w-28 h-36 object-contain bg-white" />
+              <img src="/companies/company-f.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-g.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-h.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-i.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-j.png" className="w-20 h-20 object-contain bg-white" />
+            </div>
 
-    {/* Row 3 */}
-    <div className="flex gap-1">
-      <img src="/company-u.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-v.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-w.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-x.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-y.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-z.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-1.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-2.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-3.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-4.png" className="w-20 h-20 object-contain bg-white" />
-    </div>
+            <div className="flex gap-1">
+              <img src="/companies/company-k.png" className="w-24 h-20 object-contain bg-white" />
+              <img src="/companies/company-l.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-m.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-n.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-o.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-p.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-q.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-r.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-s.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-t.png" className="w-24 h-24 object-contain bg-white" />
+            </div>
 
-    <div className="flex gap-1">
-      <img src="/company-5.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-6.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-7.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-8.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-9.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-10.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-11.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-12.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-13.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-14.png" className="w-20 h-20 object-contain bg-white" />
-    </div>
-    <div className="flex gap-1">
-      <img src="/company-15.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-16.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-17.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-18.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-19.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-20.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-21.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-22.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-23.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-24.png" className="w-20 h-20 object-contain bg-white" />
-    </div>
-    <div className="flex gap-1">
-      <img src="/company-25.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-26.png" className="w-24 h-24 object-contain bg-white" />
-      <img src="/company-27.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-28.png" className="w-20 h-20 object-contain bg-white" />
-      <img src="/company-29.png" className="w-24 h-24 object-contain bg-white" />
-    </div>
-    <div className="flex gap-1">
-    </div>
+            <div className="flex gap-1">
+              <img src="/companies/company-u.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-v.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-w.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-x.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-y.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-z.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-1.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-2.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-3.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-4.png" className="w-20 h-20 object-contain bg-white" />
+            </div>
 
-    {/* Row 4 */}
-    <div className="flex gap-1">
-    </div>
-  </div>
-</section>
-
+            <div className="flex gap-1">
+              <img src="/companies/company-5.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-6.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-7.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-8.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-9.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-10.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-11.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-12.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-13.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-14.png" className="w-20 h-20 object-contain bg-white" />
+            </div>
+            <div className="flex gap-1">
+              <img src="/companies/company-15.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-16.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-17.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-18.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-19.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-20.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-21.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-22.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-23.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-24.png" className="w-20 h-20 object-contain bg-white" />
+            </div>
+            <div className="flex gap-1">
+              <img src="/companies/company-25.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-26.png" className="w-24 h-24 object-contain bg-white" />
+              <img src="/companies/company-27.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-28.png" className="w-20 h-20 object-contain bg-white" />
+              <img src="/companies/company-29.png" className="w-24 h-24 object-contain bg-white" />
+            </div>
+            <div className="flex gap-1">
+            </div>
+            <div className="flex gap-1">
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>
