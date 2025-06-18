@@ -28,7 +28,7 @@ export function SiteHeader() {
           <Link href="/" className="text-sm font-medium text-[#246321] hover:text-[#279445]">
             Home
           </Link>
-          <Link href="#" className="text-sm font-medium text-[#246321] hover:text-[#279445]">
+          <Link href="/AboutUs" className="text-sm font-medium text-[#246321] hover:text-[#279445]">
             About Us
           </Link>
           <Link href="/services" className="text-sm font-medium text-[#246321] hover:text-[#279445]">
@@ -62,7 +62,7 @@ export function SiteHeader() {
           <Link href="/" className="block text-[#246321] hover:text-[#279445]">
             Home
           </Link>
-          <Link href="#" className="block text-[#246321] hover:text-[#279445]">
+          <Link href="/AboutUs" className="block text-[#246321] hover:text-[#279445]">
             About Us
           </Link>
           <Link href="/services" className="block text-[#246321] hover:text-[#279445]">
