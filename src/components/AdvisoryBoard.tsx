@@ -140,7 +140,6 @@ const AdvisoryBoard = () => {
         </p>
       </div>
 
-      {/* Filters */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
         <div className="relative">
           <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -192,7 +191,6 @@ const AdvisoryBoard = () => {
         </Select>
       </div>
 
-      {/* Advisory Listings */}
       <div className="space-y-4">
         {filteredAdvisories.length > 0 ? (
           filteredAdvisories.map((service) => (
@@ -255,7 +253,6 @@ const AdvisoryBoard = () => {
         )}
       </div>
 
-      {/* Advisory Details Dialog */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
           {selectedAdvisory && <AdvisoryDetails advisory={selectedAdvisory} />}

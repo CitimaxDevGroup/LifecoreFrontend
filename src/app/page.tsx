@@ -1,12 +1,14 @@
+'use client';
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Users } from "lucide-react";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
+import { Users } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -17,6 +19,7 @@ import {
 } from "@/components/ui/card";
 import {
   Briefcase,
+  Stethoscope,
   Calendar,
   ChevronRight,
   ArrowRight,
@@ -27,29 +30,98 @@ import {
 import { SiteHeader } from "@/components/site-header";
 
 export default function Home() {
-  const services = [
+  const teamMembers = [
     {
-      title: "Laboratory Testing",
-      description:
-        "Comprehensive blood work, genetic testing, and specialized diagnostic services.",
-      imageSrc: "https://api.dicebear.com/7.x/avataaars/svg?seed=lab",
-      imageAlt: "Laboratory icon",
+      name: 'Marie Cabanting',
+      role: 'Administrative Manager',
+      image: "/t1.png",
     },
     {
-      title: "Preventive Health Screenings",
-      description:
-        "Early detection screenings and health risk assessments for proactive healthcare.",
-      imageSrc: "https://api.dicebear.com/7.x/avataaars/svg?seed=health",
-      imageAlt: "Health screening icon",
+      name: 'Qareem Pido, M.D. DPSP',
+      role: 'Pathologist',
+      image: '/t.png',
     },
     {
-      title: "Specialized Consultations",
-      description:
-        "Expert consultations with healthcare specialists in various medical fields.",
-      imageSrc: "https://api.dicebear.com/7.x/avataaars/svg?seed=consult",
-      imageAlt: "Consultation icon",
+      name: 'Gilwinn Triunfo, RMT',
+      role: 'Chief Medical Technologist',
+      image: '/t2.jpg',
+    },
+    {
+      name: 'Gia Yvonne Andres, RMT',
+      role: 'Laboratory Supervisor',
+      image: '/t.png',
+    },
+    {
+      name: 'Trixie Chloe Arcania, RMT',
+      image: '/t3.jpg',
+    },
+    {
+      name: 'Laurence Bernard Jasper Canlas, RMT',
+      image: '/t4.jpg',
+    },
+    {
+      name: 'Fherry Mae Quidato, RMT',
+      image: '/t5.jpg',
+    },
+    {
+      name: 'Mac Soriano',
+      role: 'IT Administrator',
+      image: '/t6.jpg',
     },
   ];
+
+  const hero = [
+    {
+      image: "/s1.jpg",
+    },
+    {
+      image: "/s2.jpg",
+    },
+    {
+      image: "/s3.jpg",
+    },
+    {
+      image: "/s4.jpg",
+    },
+    {
+      image: "/s5.jpg",
+    }, {
+      image: "/s6.jpg",
+    },
+  ];
+
+  function paginationColors() {
+  setTimeout(() => {
+    const paginations = document.querySelectorAll(".swiper-pagination");
+
+    paginations.forEach((pagination) => {
+      const bullets = pagination.querySelectorAll(".swiper-pagination-bullet");
+
+      bullets.forEach((bullet) => {
+        (bullet as HTMLElement).style.backgroundColor = "#279445";
+        (bullet as HTMLElement).style.opacity = "0.4";
+      });
+
+      const observer = new MutationObserver(() => {
+        bullets.forEach((bullet) => {
+          if (bullet.classList.contains("swiper-pagination-bullet-active")) {
+            (bullet as HTMLElement).style.backgroundColor = "#246321";
+            (bullet as HTMLElement).style.opacity = "1";
+          } else {
+            (bullet as HTMLElement).style.backgroundColor = "#4fb74c";
+            (bullet as HTMLElement).style.opacity = "0.4";
+          }
+        });
+      });
+
+      observer.observe(pagination, {
+        attributes: true,
+        childList: true,
+        subtree: true,
+      });
+    });
+  }, 0);
+}
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -61,11 +133,10 @@ export default function Home() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    Advanced Healthcare Solutions for Your Well-being
+                    Your Trusted Source of Health Solutions
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    LifeCore Biointegrative Inc. combines cutting-edge
-                    laboratory services with holistic healthcare approaches.
+                    LIFECORE Bio-Integrative is a duly-licensed medical center in the Philippines. Its headquarters is located in one of Metro Manila’s Central Business Districts.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
@@ -75,102 +146,154 @@ export default function Home() {
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
-                  <Link href="/job-board">
+                  <Link href="/services">
                     <Button
                       variant="outline"
                       size="lg"
                       className="w-full min-[400px]:w-auto"
                     >
-                      View Job Openings <Briefcase className="ml-2 h-4 w-4" />
+                      View Services <Stethoscope className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
                 </div>
               </div>
-              <div className="mx-auto w-full max-w-[500px] lg:max-w-none">
-                <div className="aspect-video overflow-hidden rounded-xl">
-                  <Image
-                    src="/lifecore7.jpg"
-                    alt="Modern laboratory equipment"
-                    width={600}
-                    height={400}
-                    className="object-cover w-full h-full"
-                  />
+              <div className="mx-auto w-full max-w-[500px] lg:max-w-none overflow-hidden">
+                <Swiper
+                  modules={[Autoplay, Pagination]}
+                  autoplay={{ delay: 3000 }}
+                  loop={true}
+                  pagination={{ clickable: true }}
+                  className="rounded-xl"
+                  onInit={paginationColors}
+                >
+                  {hero.map((item, index) => (
+                    <SwiperSlide key={index}>
+                      <div className="aspect-video">
+                        <Image
+                          src={item.image}
+                          alt={`Hero Slide ${index + 1}`}
+                          width={600}
+                          height={400}
+                          className="object-cover w-full h-full rounded-xl"
+                        />
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                  <div className="swiper-pagination mt-12 mb-0 !relative" />
+                </Swiper>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white w-full py-10 xl:py-12">
+          <div className="container mx-auto px-4">
+            <div className="flex flex-wrap -mx-4 mb-2">
+              <div className="w-full lg:w-1/3 px-4 mb-8 lg:mb-0">
+                <Link href="/services">
+                  <h2 className="cursor-pointer text-lg uppercase text-[#279445] mt-14 tracking-wide mb-3 hover:underline">
+                    Our Services
+                  </h2>
+                </Link>
+                <h3 className="text-[calc(1.305rem+0.66vw)] xl:text-[1.8rem] font-bold leading-snug">
+                  Comprehensive healthcare & lab solutions
+                </h3>
+              </div>
+              <div className="w-full lg:w-2/3 px-4">
+                <div className="flex flex-wrap -mx-4 text-center">
+                  {[
+                    {
+                      title: "Clinical Laboratory",
+                      imageSrc: "/laboratory.png",
+                      subtitle: "Service Availability",
+                    },
+                    {
+                      title: "Compounding Pharmacy",
+                      imageSrc: "/compounding.png",
+                      subtitle: "Customized Meds",
+                    },
+                    {
+                      title: "Drug Manufacturing",
+                      imageSrc: "/drug.png",
+                      subtitle: "Formulations Delivered",
+                    },
+                  ].map((service, index) => (
+                    <div
+                      key={index}
+                      className="w-full md:w-1/3 px-4 mt-8 flex-[0_0_auto]"
+                    >
+                      <div className="mb-4 mx-auto">
+                        <img
+                          src={service.imageSrc}
+                          alt={service.title}
+                          className="h-40 w-40 object-cover rounded-full shadow-md mx-auto"
+                        />
+                      </div>
+                      <p className="text-lg font-medium">{service.title}</p>
+                      <p className="text-muted-foreground text-xs">{service.subtitle}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="w-full py-12 md:py-24 bg-background">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  Our Services
-                </h2>
-                <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Comprehensive laboratory and healthcare services tailored to your needs
-                </p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-              {[
-                {
-                  title: "Laboratory Testing",
-                  description:
-                    "Comprehensive blood work, genetic testing, and specialized diagnostic services.",
-                  imageSrc: "/lifecore4.jpg",
-                  imageAlt: "Laboratory icon",
-                },
-                {
-                  title: "Preventive Health Screenings",
-                  description:
-                    "Early detection screenings and health risk assessments for proactive healthcare.",
-                  imageSrc: "/lifecore6.jpg",
-                  imageAlt: "Health screening icon",
-                },
-                {
-                  title: "Specialized Consultations",
-                  description:
-                    "Expert consultations with healthcare specialists in various medical fields.",
-                  imageSrc: "/lifecore3.jpg",
-                  imageAlt: "Consultation icon",
-                },
-              ].map((service, index) => (
-                <Card key={index} className="transition-all hover:shadow-lg">
-                  <CardHeader>
-                    <div className="mb-4">
-                      <Image
-                        src={service.imageSrc}
-                        width={200}
-                        height={100}
-                        alt={service.imageAlt}
-                        className="rounded-md"
-                      />
-                    </div>
-                    <CardTitle>{service.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-base">
-                      {service.description}
-                    </CardDescription>
-                  </CardContent>
-                  <CardFooter>
-                    <Link
-                      href="/appointments"
-                      className="group flex items-center text-sm font-medium text-primary"
-                    >
-                      Book now{" "}
-                      <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Link>
-                  </CardFooter>
-                </Card>
+        <section className="relative overflow-hidden py-10 md:py-14 xl:py-16">
+          <div
+            className="shape absolute z-[1] w-24 h-24 rounded-full bg-[#4fb74c] right-0 bottom-2 translate-x-1/2"
+          />
+          <div
+            className="shape absolute z-[1] w-24 h-24 rounded-full bg-[#4fb74c] opacity-50 top-2 left-0 -translate-x-1/2"
+          />
+          <div className="text-center max-w-3xl mx-auto mb-12 px-4">
+            <h1 className="text-xl md:text-2xl lg:text-4xl mb-2 font-bold text-[#279445] leading-snug">
+              Meet Our Team!
+            </h1>
+            <p>Get to know the passionate professionals behind <span className="text-[#279445]"> LifeCore Bio-Integrative Inc. </span>
+              — dedicated experts committed to delivering exceptional care and innovation in every service we provide.</p>
+          </div>
+          <div className="px-4">
+            <Swiper
+              modules={[Pagination, Autoplay]}
+              onInit={paginationColors}
+              slidesPerView={1}
+              spaceBetween={20}
+              pagination={{ clickable: true }}
+              loop={true}
+              speed={4000}
+              autoplay={{ delay: 4000 }}
+              breakpoints={{
+                640: { slidesPerView: 1.5 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+                1280: { slidesPerView: 4 },
+              }}
+            >
+              {teamMembers.map((member, index) => (
+                <SwiperSlide key={index}>
+                  <div className="bg-white shadow-lg rounded-xl p-6 text-center h-60">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-20 h-20 rounded-full mx-auto mb-4"
+                    />
+                    <h4 className="text-lg font-semibold mb-1">{member.name}</h4>
+                    <p className="text-xs uppercase tracking-wider text-gray-400 mb-2">
+                      {member.role}
+                    </p>
+                    <p className="text-sm text-gray-600 mb-3">
+                      LIFECORE Bio-Integrative Inc. Laboratory
+                    </p>
+                  </div>
+                </SwiperSlide>
               ))}
-            </div>
+              <div className="swiper-pagination mt-20 mb-0 !relative" />
+            </Swiper>
           </div>
         </section>
 
-        <section className="w-full py-12 md:py-24 bg-muted">
+        {/* <section className="w-full py-12 md:py-24 bg-muted">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
               <div>
@@ -222,11 +345,9 @@ export default function Home() {
                       </div>
                     </div>
                   </CardHeader>
-
                   <CardContent>
                     <p className="text-muted-foreground">{job.description}</p>
                   </CardContent>
-
                   <CardFooter>
                     <Link href="/job-board" aria-label={`Go to job board from ${job.title}`}>
                       <Button variant="secondary" size="sm">
@@ -238,9 +359,8 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </section>
-
-        <section className="w-full py-12 md:py-24 bg-background">
+        </section> */}
+        {/* <section className="w-full py-12 md:py-24 bg-background">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
               <div className="flex flex-col justify-center space-y-4">
@@ -302,9 +422,9 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
-      </main>
+        </section> */}
 
+      </main>
       <footer className="w-full border-t bg-background py-6 md:py-8">
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -327,8 +447,8 @@ export default function Home() {
               <h3 className="font-semibold text-[#279445] mb-2">Quick Links</h3>
               <div className="grid gap-2">
                 <Link href="/" className="text-sm text-muted-foreground hover:text-[#4fb74c]">Home</Link>
-                <Link href="/advisory-board" className="text-sm text-muted-foreground hover:text-[#4fb74c]">Advisory Board</Link>
-                <Link href="/job-board" className="text-sm text-muted-foreground hover:text-[#4fb74c]">Job Board</Link>
+                <Link href="/services" className="text-sm text-muted-foreground hover:text-[#4fb74c]">Services</Link>
+                <Link href="/products" className="text-sm text-muted-foreground hover:text-[#4fb74c]">Products</Link>
                 <Link href="/privacy" className="text-sm text-muted-foreground hover:text-[#4fb74c]">Privacy Policy</Link>
               </div>
             </div>
