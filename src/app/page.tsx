@@ -73,6 +73,12 @@ export default function Home() {
 
   const hero = [
     {
+      image: "/s7.jpg",
+    },
+    {
+      image: "/s8.jpg",
+    },
+    {
       image: "/s1.jpg",
     },
     {
@@ -88,6 +94,12 @@ export default function Home() {
       image: "/s5.jpg",
     }, {
       image: "/s6.jpg",
+    },
+    {
+      image: "/s9.jpg",
+    },
+    {
+      image: "/s10.jpg",
     },
   ];
 
@@ -141,7 +153,7 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Link href="/">
+                  <Link href="/AboutUs">
                     <Button size="lg" className="w-full min-[400px]:w-auto bg-[#279445] hover:bg-[#14722f]">
                       Learn More!{" "}
                       <ArrowRight className="ml-2 h-4 w-4" />
