@@ -21,7 +21,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import Image from "next/image"; // Only if using Next.js, adjust if not
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Calendar,
@@ -45,10 +45,10 @@ const LicensedPermits = ({
   permits?: Permit[];
 }) => {
   return (
-    <div className="w-full py-12 bg-white">
+    <div className="w-full bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">
+          <h2 className="text-4xl font-bold text-[#279445] mb-2">
             Licenses and Permits
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">

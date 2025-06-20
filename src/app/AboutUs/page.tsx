@@ -7,7 +7,6 @@ export default function AboutUs() {
     <div className="flex flex-col min-h-screen bg-background">
       <SiteHeader />
       <main className="flex-1">
-        {/* Removed container/py-0 from here */}
         <AboutUsPage />
       </main>
       <Footer />

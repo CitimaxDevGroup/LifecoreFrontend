@@ -14,15 +14,11 @@ export default function ClientHighlights() {
           their business.
         </p>
       </header>
-
       <main className="max-w-7xl mx-auto">
         <section className="mb-16">
           <ClientLogoCarousel />
         </section>
-
-        
       </main>
-
     </div>
   );
 }
