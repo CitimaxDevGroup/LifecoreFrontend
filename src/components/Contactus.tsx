@@ -23,7 +23,6 @@ const Contactus = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you can add form submission logic, e.g., send data to backend or API
     alert("Thank you for contacting us! We will get back to you soon.");
     setFormData({
       name: "",

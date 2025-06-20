@@ -30,6 +30,7 @@ import {
   FileCheck,
   CheckCircle,
 } from "lucide-react";
+import { FadeInOnScroll } from "@/components/animation";
 
 interface Permit {
   id: string;
@@ -46,86 +47,86 @@ const LicensedPermits = ({
 }) => {
   return (
     <div className="w-full bg-white">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-10">
-          <h2 className="text-4xl font-bold text-[#279445] mb-2">
-            Licenses and Permits
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            We maintain the highest standards of medical practice through these
-            professional licenses that ensure quality care for all our patients.
-          </p>
-        </div>
+      <FadeInOnScroll>
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <h2 className="text-4xl font-bold text-[#279445] mb-2">
+              Licenses and Permits
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              We maintain the highest standards of medical practice through these
+              professional licenses that ensure quality care for all our patients.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {permits.map((permit) => (
-            <TooltipProvider key={permit.id}>
-              <Tooltip>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <TooltipTrigger asChild>
-                      <motion.div
-                        whileHover={{
-                          y: -5,
-                          boxShadow:
-                            "0 10px 25px -5px rgba(34, 197, 94, 0.3)",
-                        }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        <Card className="h-full overflow-hidden border-2 border-green-50 hover:border-green-200 transition-colors cursor-pointer">
-                          <CardHeader className="pb-2">
-                            <div className="flex items-center justify-between">
-                              <div className="text-blue-600">
-                                {permit.icon}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {permits.map((permit) => (
+              <TooltipProvider key={permit.id}>
+                <Tooltip>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <TooltipTrigger asChild>
+                        <motion.div
+                          whileHover={{
+                            y: -5,
+                            boxShadow:
+                              "0 10px 25px -5px rgba(34, 197, 94, 0.3)",
+                          }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <Card className="h-full overflow-hidden border-2 border-green-50 hover:border-green-200 transition-colors cursor-pointer">
+                            <CardHeader className="pb-2">
+                              <div className="flex items-center justify-between">
+                                <div className="text-blue-600">
+                                  {permit.icon}
+                                </div>
                               </div>
-                              
-                            </div>
-                            <CardTitle className="text-xl mt-2">
-                              {permit.title}
-                            </CardTitle>
-                            <CardDescription className="text-gray-500">
-                              Issued by {permit.issuingAuthority}
-                            </CardDescription>
-                          </CardHeader>
-                          <CardContent>
-                            <p className="text-sm text-gray-600">
-                              {permit.description}
-                            </p>
-                          </CardContent>
-                        </Card>
-                      </motion.div>
-                    </TooltipTrigger>
-                  </DialogTrigger>
-                  <TooltipContent className="max-w-xs">
-                    <p>Click to view full certification details</p>
-                  </TooltipContent>
-
-                  <DialogContent className="max-h-[90vh] overflow-y-auto">
-                        <DialogHeader>
-                            <DialogTitle className="text-xl">{permit.title}</DialogTitle>
-                            <DialogDescription className="text-sm text-gray-500">
-                            Issued by {permit.issuingAuthority} <br />
-                            </DialogDescription>
-                        </DialogHeader>
-                              <div className="space-y-4">
-                                  <div className="w-full flex justify-center items-start">
-                                      <img
-                                          src={`/${permit.id}.png`}
-                                          alt={permit.title}
-                                          className="max-w-full max-h-[1000vh] object-contain border rounded"
-                                      />
-                                  </div>
-                                  <p className="text-gray-700 text-sm">{permit.description}</p>
-                              </div>
-                          </DialogContent>
-                      </Dialog>
-                  </Tooltip>
+                              <CardTitle className="text-xl mt-2">
+                                {permit.title}
+                              </CardTitle>
+                              <CardDescription className="text-gray-500">
+                                Issued by {permit.issuingAuthority}
+                              </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                              <p className="text-sm text-gray-600">
+                                {permit.description}
+                              </p>
+                            </CardContent>
+                          </Card>
+                        </motion.div>
+                      </TooltipTrigger>
+                    </DialogTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <p>Click to view full certification details</p>
+                    </TooltipContent>
+                    <DialogContent className="max-h-[90vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle className="text-xl">{permit.title}</DialogTitle>
+                        <DialogDescription className="text-sm text-gray-500">
+                          Issued by {permit.issuingAuthority} <br />
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="space-y-4">
+                        <div className="w-full flex justify-center items-start">
+                          <img
+                            src={`/${permit.id}.png`}
+                            alt={permit.title}
+                            className="max-w-full max-h-[1000vh] object-contain border rounded"
+                          />
+                        </div>
+                        <p className="text-gray-700 text-sm">{permit.description}</p>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                </Tooltip>
               </TooltipProvider>
-          ))}
-                </div>
-            </div>
+            ))}
+          </div>
         </div>
-    );
+      </FadeInOnScroll>
+    </div>
+  );
 };
 
 const defaultPermits: Permit[] = [
@@ -167,7 +168,7 @@ const defaultPermits: Permit[] = [
     issuingAuthority: "Security and Exchange Commission (SEC)",
     description:
       "Certificate of Incorporation issued by the Security and Exchange Commission, the agency of the Government of the Philippines responsible for regulating the securities industry.",
-   icon: <FileCheck className="h-6 w-6" />,
+    icon: <FileCheck className="h-6 w-6" />,
   },
   {
     id: "6",
