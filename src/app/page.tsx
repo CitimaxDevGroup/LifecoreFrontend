@@ -70,6 +70,11 @@ export default function Home() {
       role: 'IT Administrator',
       image: '/t6.jpg',
     },
+    {
+      name: 'Ronald Gonzales',
+      role: 'Pharmacist Head',
+      image: '/t7.jpg',
+    },
   ];
 
   const hero = [
@@ -320,7 +325,7 @@ export default function Home() {
                         {member.role}
                       </p>
                       <p className="text-sm text-gray-600 mb-3">
-                        LIFECORE Bio-Integrative Inc. Laboratory
+                        LIFECORE Bio-Integrative Inc.
                       </p>
                     </div>
                   </SwiperSlide>
