@@ -5,8 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { SiteHeader } from "@/components/site-header";
 import Footer from "@/components/site-footer";
-import GLightbox from "glightbox";
-import "glightbox/dist/css/glightbox.css";
+// import GLightbox from "glightbox";
+// import "glightbox/dist/css/glightbox.css";
 import { ZoomIn } from "lucide-react";
 import { FadeInOnScroll } from "@/components/animation";
 
@@ -27,17 +27,23 @@ const projects = [
 
 const Products = () => {
   useEffect(() => {
-    const lightbox = GLightbox({
-      selector: "[data-glightbox]",
-      touchNavigation: true,
-      loop: true,
-      closeButton: true,
-      openEffect: "zoom",
-      closeEffect: "fade",
+    let lightbox: any;
+
+    import("glightbox").then((module) => {
+      lightbox = module.default({
+        selector: "[data-glightbox]",
+        touchNavigation: true,
+        loop: true,
+        closeButton: true,
+        openEffect: "zoom",
+        closeEffect: "fade",
+      });
     });
 
     return () => {
-      lightbox.destroy();
+      if (lightbox) {
+        lightbox.destroy();
+      }
     };
   }, []);
 
