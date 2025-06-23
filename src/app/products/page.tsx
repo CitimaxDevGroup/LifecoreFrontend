@@ -6,7 +6,7 @@ import Image from "next/image";
 import { SiteHeader } from "@/components/site-header";
 import Footer from "@/components/site-footer";
 // import GLightbox from "glightbox";
-// import "glightbox/dist/css/glightbox.css";
+import "glightbox/dist/css/glightbox.css";
 import { ZoomIn } from "lucide-react";
 import { FadeInOnScroll } from "@/components/animation";
 
