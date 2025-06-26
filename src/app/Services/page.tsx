@@ -1,0 +1,16 @@
+import Services from "@/components/Services";
+import { SiteHeader } from "@/components/site-header";
+import Footer from "@/components/site-footer";
+
+export default function ServicePage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-background">
+      <SiteHeader />
+      <main className="flex-1">
+        <Services/>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
